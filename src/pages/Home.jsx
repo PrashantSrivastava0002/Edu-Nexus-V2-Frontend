@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Trophy, Sparkles, Award, Play, ShieldAlert, Cpu, Brain, Flame, Target, Users, User, ArrowRight, RefreshCw, X, Check } from 'lucide-react';
 import { io } from 'socket.io-client';
 import confetti from 'canvas-confetti';
+import API_BASE from '../config.js';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const Home = () => {
   // Connect socket client
   const initSocketConnection = () => {
     if (socketRef.current) return;
-    const socketUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+    const socketUrl = API_BASE || 'http://localhost:5000';
     socketRef.current = io(socketUrl);
 
     // Socket Event Listeners

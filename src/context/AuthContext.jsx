@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import API_BASE from '../config.js';
 
 const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const fetchProfile = async () => {
       if (token) {
         try {
-          const res = await fetch('/api/auth/me', {
+          const res = await fetch(`${API_BASE}/api/auth/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password, classLevel, rollNo, phone) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/register-student', {
+      const res = await fetch(`${API_BASE}/api/auth/register-student`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ export const AuthProvider = ({ children }) => {
   // Profile update handler
   const updateProfile = async (profileData) => {
     try {
-      const res = await fetch('/api/student/profile', {
+      const res = await fetch(`${API_BASE}/api/student/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
