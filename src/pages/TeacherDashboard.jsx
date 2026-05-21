@@ -89,7 +89,7 @@ const TeacherDashboard = () => {
   const fetchPerformance = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/teacher/performance', {
+      const res = await fetch(`${API_BASE}/api/teacher/performance`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -237,7 +237,7 @@ const TeacherDashboard = () => {
     setAiMatchedTopic('');
 
     try {
-      const res = await fetch(`${API_BASE}/api/teacher/generate-quiz', {
+      const res = await fetch(`${API_BASE}/api/teacher/generate-quiz`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
